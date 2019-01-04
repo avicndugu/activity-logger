@@ -1,0 +1,8 @@
+Heading with the name of activity you are logging time for.
+button to click on start of the activiy.
+button to click on end of the activity.
+Graph to show the amount of time taken on each activity.
+Add the activity you want to keep time a log of.
+Splash oage will be boxes with all the different activities you are tracking.
+I will laern about data management and storage.
+i will also be learning about my sleeping patterns,
