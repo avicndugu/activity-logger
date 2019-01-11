@@ -72,10 +72,13 @@ function dataSortEven() {
 	return startTimes;
 }
 // When draw graph is called it captures and stores the current data of end time for display on graph
+
 function dataSortOdd() {
-	var endTimes= new Array();
-	// console.log(timeLogging.length);
+	console.log(timeLogging);
 	// console.log(timeLogging);
+	var endTimes= new Array();
+	// console.log(typeof(endTimes));
+	console.log(timeLogging.length);
 	for (n=0; n<timeLogging.length; n++){
 		if (n%2!==0){
 			endTimes.push(timeLogging[n]);
@@ -84,7 +87,46 @@ function dataSortOdd() {
 	console.log(endTimes);
 	return endTimes;
 }
+// var hours=new Array();
+// var H;
+// var M=new Array;
+function chartTime(endTimes) {
+	for (n=0; n<endTimes.length; n++){	
+		endTimes[n]=parseInt(endTimes[n]) + parseFloat((endTimes[n].slice(3,6))/60);
+		console.log(endTimes);
+	}
+	return endTimes;
+	// for (i=0; i<endTimes.length; i++){
+	// 	console.log(endTimes.length);
+	// 	// console.log(endTimes[2]);
+	// 	M.push(endTimes[i]);
+	// 	console.log(M);
+	// 	// H=parseInt(endTimes[i].slice(0,2))+ (parseFloat(endTimes[i].slice(3,6))/60);
+		// M=parseInt(endTimes[i].slice(3,6))
+		// console.log(M);
+		// hours.push(H);
+		// console.log(hours);
+		// return hours;	
+	// }
+}
 
+
+// function chartTime(endTimes) {
+// 	for (i=0; i<endTimes.length; i++){
+// 		// console.log(endTimes.length);
+// 		H=parseInt(endTimes[i].slice(0,2))+ (parseFloat(endTimes[i].slice(3,6))/60);
+// 		console.log(H);
+// 		hours.push(H);
+// 		// console.log(hours);
+// 		return hours;
+// 	}
+// }
+
+// 	var data=chartTime(dataSortOdd());
+
+// document.querySelector("#adding").addEventListener("click",function(){
+// 	var data=chartTime(dataSortOdd());
+// });
 // console.log(logger.dateStamp());
 
 document.querySelector("#recorder").addEventListener("click",function(){
@@ -93,14 +135,23 @@ document.querySelector("#recorder").addEventListener("click",function(){
 	// timeLogger();
 	timeDisplay.innerText=timeLog(allTimeLog());
 	timeStamps();
+	dataSortEven();
+	dataSortOdd();
+	chartTime(dataSortOdd());
+	// console.log(chartTime(dataSortOdd()));
 	console.log(logger.timeStamp);
+    console.log(chartTime(dataSortOdd()));
+
 
 	// console.log(logger.dateStamp());
 });
 	
 // recorder
 document.querySelector("#graph").addEventListener("click",function(){
-	dataSortEven();
-	dataSortOdd();
+	// dataSortEven();
+	// dataSortOdd();
+	// chartTime(dataSortOdd());
 	console.log(logger.timeStamp);
 });
+
+// console.log(myChart.data.labels.length);

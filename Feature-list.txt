@@ -2,7 +2,10 @@ Heading with the name of activity you are logging time for.
 button to click on start of the activiy.
 button to click on end of the activity.
 Graph to show the amount of time taken on each activity.
+	Will need to create a data showing the day and parsing that date to the chart for rendering on x-axis. Remember that the adder should check if the previous entry is similar to the current then deny addition else add the new day.
+
+	
 Add the activity you want to keep time a log of.
 Splash oage will be boxes with all the different activities you are tracking.
-I will laern about data management and storage.
+I will laern about data management and storage especially local storage.
 i will also be learning about my sleeping patterns,
