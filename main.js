@@ -5,26 +5,26 @@ var dateLogging= new Array();
 var log= [];
 var dLog=[];
 
-console.log(timeDisplay);
+// console.log(timeDisplay);
 // Generate the time, day and date string
 function allTimeLog() {
 	var d= new Date();
 	var t=d.toString();
-	console.log(t);
+	// console.log(t);
 	return t;
 }
 
 // Pick the time string only for display and storage
 function timeLog(t){
 	var time= t.slice(16,21);
-	console.log(time);
+	// console.log(time);
 	return time;
 }
 
 // Pick the time string only for display and storage
 function dateLog(t){
 	var date=t.slice(4,15);
-	console.log(date);
+	// console.log(date);
 	return date;
 }
 
@@ -32,25 +32,25 @@ function timeStore(time){
 	// CHECK IF THERE IS LOCALSTORAGE DATA FOR TIME
 	// SO THAT YOU AVOID OVERWRITING IT
 	if (localStorage.key(1)==='timeLogger'){
-		console.log(timeLogger);
 		log=JSON.parse(localStorage.getItem('timeLogger'));
 		log.push(time);
 		timeLogger=JSON.stringify(log);
 		localStorage.setItem('timeLogger',timeLogger);
-		console.log(log);
+		// console.log(log);
+		// console.log(timeLogger);
 		// alert(2);
 	} 
 	else {
 		// alert(1);
-		console.log(log);
-		console.log(time);
+		// console.log(log);
+		// console.log(time);
 		log.push(time);
-		console.log(log);
+		// console.log(log);
 		var timeLogger=JSON.stringify(log);
-		console.log(timeLogger);		
+		// console.log(timeLogger);		
     	localStorage.setItem('timeLogger',timeLogger);
 	}
-	console.log(log);
+	// console.log(log);
 	return log;
 }
 
@@ -58,49 +58,43 @@ function dateStore(date){
 	// CHECK IF THERE IS LOCALSTORAGE DATA FOR DATE
 	// SO THAT YOU AVOID OVERWRITING IT
 	if (localStorage.key(0)==='dateLogger'){
-		console.log(dateLogger);
 		dLog=JSON.parse(localStorage.getItem('dateLogger'));
 		dLog.push(date);
 		dateLogger=JSON.stringify(dLog);
 		localStorage.setItem('dateLogger',dateLogger);
-		console.log(dLog);
+		// console.log(dLog);
+		// console.log(dateLogger);
 		// alert(2);
 	}
 	else {
 		// alert(1);
-		console.log(date);
+		// console.log(date);
 		dLog.push(date);
-		console.log(dLog);
+		// console.log(dLog);
 		var dateLogger=JSON.stringify(dLog);
-		console.log(dateLogger);	
+		// console.log(dateLogger);	
     	localStorage.setItem('dateLogger',dateLogger);
-    	console.log(dateLogger);
+    	// console.log(dateLogger);
 	}
-	console.log(dLog);
+	// console.log(dLog);
 	return dLog;
 }
 
 
 document.querySelector('#test').addEventListener('click',function(){
-	timeLog(allTimeLog());
-	dateLog(allTimeLog());
-	console.log(allTimeLog());
-	dateLog(allTimeLog());
-	// console.log(log);
-	// console.log(timeStore());
+	// console.log(allTimeLog());
 	timeStore(timeLog(allTimeLog()));
 	dateStore(dateLog(allTimeLog()));
-	console.log(log);
-	console.log(allTimeLog());
 	timeDisplay.innerText=timeLog(allTimeLog());
 	
 });
-document.querySelector("#graph").addEventListener("click",function(){
-	dataSortEven(timeStore(timeLog(allTimeLog())));
-	dataSortOdd(timeStore(timeLog(allTimeLog())));
-	console.log(timeStore(timeLog(allTimeLog())));
-	chartTime(dataSortOdd());
+document.querySelector('#adding').addEventListener('click', function(){
+    window.location.href = "chart-view.html";
 });
+// document.querySelector("#graph").addEventListener("click",function(){
+// 	console.log(dataSortOdd(log,dLog));
+// 	console.log(log);
+// });
 
 // old code to be rewritten
 
@@ -114,11 +108,11 @@ function buttonText(){
 		recorder.innerText="Start";
 	}
 }
-function timeStamps(){
-	timeLogging.push(timeLog(allTimeLog()));
-	// console.log(timeLogging);
-	return timeLogging;
-}
+// function timeStamps(){
+// 	timeLogging.push(timeLog(allTimeLog()));
+// 	// console.log(timeLogging);
+// 	return timeLogging;
+// }
 
 
 // When draw graph is called it captures and store the current data of start time
@@ -133,34 +127,45 @@ function dataSortEven(sto) {
 			startDates.push(dLog[n]);
 		}
 	}
-	console.log(startTimes);
-	return startTimes;
+	var start=[startTimes,startDates];
+	// console.log(start);
+	return start;
 }
 // When draw graph is called it captures and stores the current data of end time for display on graph
 
-function dataSortOdd(sto) {
-	console.log(log);
+function dataSortOdd(stoT,stoD) {
+	// console.log(log);
 	// console.log(timeLogging);
 	var endTimes= new Array();
 	var endDates= new Array();
 	// console.log(typeof(endTimes));
-	console.log(log.length);
+	// console.log(log.length);
 	for (n=0; n<log.length; n++){
 		if (n%2!==0){
 			endTimes.push(log[n]);
+			endDates.push(dLog[n]);
 		}
 	}
-	console.log(endTimes);
-	return endTimes;
+	var end={
+		endTimes,endDates}
+		;
+	// console.log(end);
+	// console.log(end.endDates);
+	return end;
 }
 
 // Generating data for displaying the end of a duration you were timing
-function chartTime(endTimes) {
-	for (n=0; n<endTimes.length; n++){	
-		endTimes[n]=parseInt(endTimes[n]) + parseFloat((endTimes[n].slice(3,6))/60);
-		console.log(endTimes);
+function chartTime(end) {
+	// console.log(end);
+	// console.log(end.endTimes.length);
+	for (n=0; n<end.endTimes.length; n++){	
+		end.endTimes[n]=parseInt(end.endTimes[n]) + parseFloat((end.endTimes[n].slice(3,6))/60);
+		end.endDates[n]=end.endDates[n];
+		// console.log(end.endTimes);
 	}
-	return endTimes;
+	// console.log(end.endTimes);
+	// console.log(end);
+	return end;
 }
 
 
