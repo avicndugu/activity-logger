@@ -31,7 +31,7 @@ function dateLog(t){
 function timeStore(time){
 	// CHECK IF THERE IS LOCALSTORAGE DATA FOR TIME
 	// SO THAT YOU AVOID OVERWRITING IT
-	if (localStorage.key(0)==='timeLogger'){
+	if (localStorage.key(1)==='timeLogger'){
 		console.log(timeLogger);
 		log=JSON.parse(localStorage.getItem('timeLogger'));
 		log.push(time);
@@ -42,6 +42,7 @@ function timeStore(time){
 	} 
 	else {
 		// alert(1);
+		console.log(log);
 		console.log(time);
 		log.push(time);
 		console.log(log);
@@ -56,11 +57,11 @@ function timeStore(time){
 function dateStore(date){
 	// CHECK IF THERE IS LOCALSTORAGE DATA FOR DATE
 	// SO THAT YOU AVOID OVERWRITING IT
-	if (localStorage.key(1)==='dateLogger'){
+	if (localStorage.key(0)==='dateLogger'){
 		console.log(dateLogger);
 		dLog=JSON.parse(localStorage.getItem('dateLogger'));
 		dLog.push(date);
-		logger=JSON.stringify(dLog);
+		dateLogger=JSON.stringify(dLog);
 		localStorage.setItem('dateLogger',dateLogger);
 		console.log(dLog);
 		// alert(2);
@@ -71,8 +72,9 @@ function dateStore(date){
 		dLog.push(date);
 		console.log(dLog);
 		var dateLogger=JSON.stringify(dLog);
-		console.log(dateLogger);		
+		console.log(dateLogger);	
     	localStorage.setItem('dateLogger',dateLogger);
+    	console.log(dateLogger);
 	}
 	console.log(dLog);
 	return dLog;
@@ -80,30 +82,30 @@ function dateStore(date){
 
 
 document.querySelector('#test').addEventListener('click',function(){
-	allTimeLog();
+	timeLog(allTimeLog());
+	dateLog(allTimeLog());
+	console.log(allTimeLog());
+	dateLog(allTimeLog());
+	// console.log(log);
+	// console.log(timeStore());
 	timeStore(timeLog(allTimeLog()));
 	dateStore(dateLog(allTimeLog()));
 	console.log(log);
 	console.log(allTimeLog());
+	timeDisplay.innerText=timeLog(allTimeLog());
+	
 });
-
-
-
+document.querySelector("#graph").addEventListener("click",function(){
+	dataSortEven(timeStore(timeLog(allTimeLog())));
+	dataSortOdd(timeStore(timeLog(allTimeLog())));
+	console.log(timeStore(timeLog(allTimeLog())));
+	chartTime(dataSortOdd());
+});
 
 // old code to be rewritten
 
 
-
-// function timeLogger(){
-// 	timeLogging.push(timeLog(allTimeLog()));
-// 	console.log(timeLogging);
-// 	return timeLogging;
-// }
-
-
-// var dateLogging=dateLog(allTimeLog());
-
-
+// DISPLAYED BUTTON TEXT FOR RECORDING DATA
 function buttonText(){
 	if (recorder.innerText=="Start") {
 			recorder.innerText="Stop";
@@ -122,11 +124,13 @@ function timeStamps(){
 // When draw graph is called it captures and store the current data of start time
 function dataSortEven(sto) {
 	var startTimes= new Array();
+	var startDates= new Array();
 	// console.log(timeLogging.length);
 	// console.log(timeLogging);
 	for (n=0; n<log.length; n++){
 		if (n%2===0){
 			startTimes.push(log[n]);
+			startDates.push(dLog[n]);
 		}
 	}
 	console.log(startTimes);
@@ -138,6 +142,7 @@ function dataSortOdd(sto) {
 	console.log(log);
 	// console.log(timeLogging);
 	var endTimes= new Array();
+	var endDates= new Array();
 	// console.log(typeof(endTimes));
 	console.log(log.length);
 	for (n=0; n<log.length; n++){
@@ -169,72 +174,71 @@ function chartTime(endTimes) {
 
 
 // DATA TO BE STORED IN THE LOCAL STORAGE FOR REMEMBRANCE
-var logger = {
-	timeStamp: timeLogging,
-	// function(){
-	// timeLogging.push(timeLog(allTimeLog()));
-	// // console.log(timeLogging);
-	// return timeLogging;
-	// }
-	dateStamp:function(){
-	dateLogging.push(dateLog(allTimeLog()));
-	console.log(dateLogging);
-	return dateLogging;
-	}
-}
-// console.log(timeStamps());
+// var logger = {
+// 	timeStamp: timeLogging,
+// 	// function(){
+// 	// timeLogging.push(timeLog(allTimeLog()));
+// 	// // console.log(timeLogging);
+// 	// return timeLogging;
+// 	// }
+// 	dateStamp:function(){
+// 	dateLogging.push(dateLog(allTimeLog()));
+// 	console.log(dateLogging);
+// 	return dateLogging;
+// 	}
+// }
+// // console.log(timeStamps());
 
 
-document.querySelector("#recorder").addEventListener("click",function(){
-	buttonText();
-	allTimeLog();
-	// timeLogger();
-	timeDisplay.innerText=timeLog(allTimeLog());
-	timeStamps();
-	dataSortEven(store(timeLog(allTimeLog())));
-	dataSortOdd(store(timeLog(allTimeLog())));
-	console.log(store(timeLog(allTimeLog())));
-	chartTime(dataSortOdd());
-	// console.log(chartTime(dataSortOdd()));
-	console.log(logger.timeStamp);
-    console.log(chartTime(dataSortOdd()));
-    console.log(logger.timeStamp);
-    console.log(timeStamps());
+// document.querySelector("#recorder").addEventListener("click",function(){
+// 	buttonText();
+// 	allTimeLog();
+// 	// timeLogger();
+// 	timeDisplay.innerText=timeLog(allTimeLog());
+// 	timeStamps();
+// 	dataSortEven(timeStore(timeLog(allTimeLog())));
+// 	dataSortOdd(timeStore(timeLog(allTimeLog())));
+// 	console.log(timeStore(timeLog(allTimeLog())));
+// 	chartTime(dataSortOdd());
+// 	// console.log(chartTime(dataSortOdd()));
+// 	// console.log(logger.timeStamp);
+//     console.log(chartTime(dataSortOdd()));
+//     // console.log(logger.timeStamp);
+//     console.log(timeStamps());
 
+// // CONVERTING TO string
 
-// CONVERTING TO string
+// // console.log(Logger);
 
-// console.log(Logger);
-
-	// console.log(logger.dateStamp());
-});
+// 	// console.log(logger.dateStamp());
+// });
 	
 // recorder
-document.querySelector("#graph").addEventListener("click",function(){
-	// dataSortEven();
-	// dataSortOdd();
-	// chartTime(dataSortOdd());
-	console.log(logger.timeStamp);
-});
+// document.querySelector("#graph").addEventListener("click",function(){
+// 	// dataSortEven();
+// 	// dataSortOdd();
+// 	// chartTime(dataSortOdd());
+// 	console.log(logger.timeStamp);
+// });
 
 // console.log(myChart.data.labels.length);
 
 
 
 
-// LOCAL STORAGE HAPPENING HERE
-if(window.localStorage) {
-    console.log('ls exists');
- //    if(!window.timeLogging) {
-	// 	var timeLogging =new Array();
-	// 	console.log(1);
-	// }
-	// else{
+// // LOCAL STORAGE HAPPENING HERE
+// if(window.localStorage) {
+//     console.log('ls exists');
+//  //    if(!window.timeLogging) {
+// 	// 	var timeLogging =new Array();
+// 	// 	console.log(1);
+// 	// }
+// 	// else{
 
-	// }
-    // var localLogger=JSON.stringify(timeLogging);
-    // localStorage.setItem('logger',localLogger);
-    // console.log(localStorage.getItem('logger'));
-} else {
-    console.log('ls does not exist');
-}
+// 	// }
+//     // var localLogger=JSON.stringify(timeLogging);
+//     // localStorage.setItem('logger',localLogger);
+//     // console.log(localStorage.getItem('logger'));
+// } else {
+//     console.log('ls does not exist');
+// }
