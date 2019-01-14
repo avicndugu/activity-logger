@@ -3,7 +3,7 @@ var timeDisplay=document.getElementById('time-display');
 var timeLogging=new Array;
 var dateLogging= new Array();
 var log= [];
-
+var dLog=[];
 
 console.log(timeDisplay);
 // Generate the time, day and date string
@@ -20,53 +20,72 @@ function timeLog(t){
 	console.log(time);
 	return time;
 }
-function store(instance){
-	// CHECK IF THERE IS LOCALSTORAGE DATA SO THAT YOU AVOID OVERWRITING IT
-	if (localStorage.length>0) {
-		console.log(logger);
-		log=JSON.parse(localStorage.getItem('logger'));
-		log.push(instance);
-		logger=JSON.stringify(log);
-		localStorage.setItem('logger',logger);
+
+// Pick the time string only for display and storage
+function dateLog(t){
+	var date=t.slice(4,15);
+	console.log(date);
+	return date;
+}
+
+function timeStore(time){
+	// CHECK IF THERE IS LOCALSTORAGE DATA FOR TIME
+	// SO THAT YOU AVOID OVERWRITING IT
+	if (localStorage.key(0)==='timeLogger'){
+		console.log(timeLogger);
+		log=JSON.parse(localStorage.getItem('timeLogger'));
+		log.push(time);
+		timeLogger=JSON.stringify(log);
+		localStorage.setItem('timeLogger',timeLogger);
 		console.log(log);
 		// alert(2);
-	}
+	} 
 	else {
 		// alert(1);
-		console.log(instance);
-		log.push(instance);
+		console.log(time);
+		log.push(time);
 		console.log(log);
-		logger=JSON.stringify(log);
-		console.log(logger);		
-    	localStorage.setItem('logger',logger);
+		var timeLogger=JSON.stringify(log);
+		console.log(timeLogger);		
+    	localStorage.setItem('timeLogger',timeLogger);
 	}
 	console.log(log);
 	return log;
 }
 
+function dateStore(date){
+	// CHECK IF THERE IS LOCALSTORAGE DATA FOR DATE
+	// SO THAT YOU AVOID OVERWRITING IT
+	if (localStorage.key(1)==='dateLogger'){
+		console.log(dateLogger);
+		dLog=JSON.parse(localStorage.getItem('dateLogger'));
+		dLog.push(date);
+		logger=JSON.stringify(dLog);
+		localStorage.setItem('dateLogger',dateLogger);
+		console.log(dLog);
+		// alert(2);
+	}
+	else {
+		// alert(1);
+		console.log(date);
+		dLog.push(date);
+		console.log(dLog);
+		var dateLogger=JSON.stringify(dLog);
+		console.log(dateLogger);		
+    	localStorage.setItem('dateLogger',dateLogger);
+	}
+	console.log(dLog);
+	return dLog;
+}
 
-// var ten;
+
 document.querySelector('#test').addEventListener('click',function(){
 	allTimeLog();
-	store(timeLog(allTimeLog()));
-	// ten=localStorage;
-	
+	timeStore(timeLog(allTimeLog()));
+	dateStore(dateLog(allTimeLog()));
 	console.log(log);
 	console.log(allTimeLog());
-// 	for(var i =0; i < localStorage.length; i++){
-//   console.log(localStorage.getItem(localStorage.key(i)));
-// }
- //  if(window.localStorage) {
- //    console.log('ls exists');
-
-	// }
-	// console.log(ten);
 });
-
-
-
-
-
 
 
 
@@ -81,12 +100,7 @@ document.querySelector('#test').addEventListener('click',function(){
 // 	return timeLogging;
 // }
 
-// Pick the time string only for display and storage
-function dateLog(t){
-	var date=t.slice(4,15);
-	console.log(date);
-	return date;
-}
+
 // var dateLogging=dateLog(allTimeLog());
 
 

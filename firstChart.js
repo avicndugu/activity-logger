@@ -47,9 +47,10 @@ function addData(chart, label, data){
 // var data=chartTime(dataSortOdd());
 document.querySelector('#adding').addEventListener('click', function(){
     var data=chartTime(dataSortOdd());
+    var labeling=[];
     for (n=0; n<data.length; n++){
         console.log(data[n]);
-        addData(myChart, 'red',data[n]);
+        addData(myChart, labeling[n],data[n]);
     }
 
 });
