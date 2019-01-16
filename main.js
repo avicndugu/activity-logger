@@ -5,7 +5,21 @@ var dateLogging= new Array();
 var log= [];
 var dLog=[];
 
-// console.log(timeDisplay);
+
+if (localStorage.key(0)==='dateLogger'){
+	log=JSON.parse(localStorage.getItem('timeLogger'));
+	timeLogger=JSON.stringify(log);
+	localStorage.setItem('timeLogger',timeLogger);
+	// alert(1);
+} else {
+	// alert(2);
+}
+
+if (localStorage.key(0)==='dateLogger'){
+		dLog=JSON.parse(localStorage.getItem('dateLogger'));
+		dateLogger=JSON.stringify(dLog);
+		localStorage.setItem('dateLogger',dateLogger);
+}
 // Generate the time, day and date string
 function allTimeLog() {
 	var d= new Date();
@@ -85,10 +99,15 @@ document.querySelector('#test').addEventListener('click',function(){
 	// console.log(allTimeLog());
 	timeStore(timeLog(allTimeLog()));
 	dateStore(dateLog(allTimeLog()));
-	timeDisplay.innerText=timeLog(allTimeLog());
+	timeDisplay.innerText=timeLog((allTimeLog()));
+	timeDisplay.style.textAlign="center";
+	// timeDisplay.style.a\lign="center";
+
 	
 });
 document.querySelector('#adding').addEventListener('click', function(){
+	// timeStore(time);
+	// dateStore(date);
     window.location.href = "chart-view.html";
 });
 // document.querySelector("#graph").addEventListener("click",function(){
@@ -134,6 +153,7 @@ function dataSortEven(sto) {
 // When draw graph is called it captures and stores the current data of end time for display on graph
 
 function dataSortOdd(stoT,stoD) {
+	// console.log(dLog);
 	// console.log(log);
 	// console.log(timeLogging);
 	var endTimes= new Array();

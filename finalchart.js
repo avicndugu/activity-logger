@@ -46,8 +46,8 @@ function addData(chart, label, data){
 }
 
 // REMOVING OLD DATA SO THAT WE CAN PUT ALL THE DATA FROM STORAGE
-timeStore(timeLog(allTimeLog()));
-dateStore(dateLog(allTimeLog()));
+// timeStore(timeLog(allTimeLog()));
+// dateStore(dateLog(allTimeLog()));
 
 for (n=myChart.data.labels.length; n>=0; n--){
     myChart.data.labels.pop();
@@ -56,10 +56,13 @@ for (n=myChart.data.labels.length; n>=0; n--){
     });
     myChart.update();
 }
-
+// console.log(dataSortOdd());
+// console.log(chartTime(dataSortOdd()));
 // ADDING NEW DATA SO THAT WE CAN VIEW IT
 var data=chartTime(dataSortOdd()).endTimes;
-var labeling=dataSortOdd().endDates;
+// console.log(data);
+var labeling=chartTime(dataSortOdd()).endDates;
+// console.log(labeling);
 // console.log(labeling.length);
 // console.log(data.length);
 for (n=0; n<labeling.length; n++){
