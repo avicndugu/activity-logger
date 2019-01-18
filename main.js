@@ -203,8 +203,8 @@ function allDateTime() {
 		Times.push(parseInt(log[n])+ parseFloat((log[n].slice(3,6))/60));
 		Dates.push(dLog[n]);
 	}
-	console.log(Times);
-	console.log(Dates);
+	// console.log(Times);
+	// console.log(Dates);
 	return {Dates,Times};
 }
 // allTime();

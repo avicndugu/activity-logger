@@ -5,26 +5,20 @@ var myChart = new Chart(ctx, {
     data: {
         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [{
-            label: '# of Votes',
             data: [0, 1, 2, 1, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
+            borderColor: ['rgba(54, 162, 235, 1)'],
+            label: '# of Votes',
+            borderWidth: 3,
+            fill:false
+        },
+        {
+            data: [10, 1, 2, 1, 2, 3],
+            borderColor: ['rgba(154, 162, 235, 1)'],
+            label: '# of Votes',
+            borderWidth: 3,
+            fill:false
+        }
+        ]
     },
     options: {
         scales: {
@@ -58,6 +52,14 @@ for (n=myChart.data.labels.length; n>=0; n--){
 // ADDING NEW DATA SO THAT WE CAN VIEW IT
 // var data=allDateTime().Times;
 var data=allDateTime().Times;
+var data2=(allDateTime().Times).filter((value,index,array) => {
+    return index % 2 === 0;
+});
+var data3=(allDateTime().Times).filter((value,index,array) => {
+    return index % 2 !== 0;
+});
+console.log(data2);
+console.log(data3);
 console.log(allDateTime().Times);
 // var data=chartTime(dataSortOdd()).endTimes;
 console.log(data);
@@ -70,6 +72,26 @@ for (n=0; n<labeling.length; n++){
     // console.log(data[n]);
     // console.log(labeling[n]);
     addData(myChart, labeling[n],data[n]);
+    // addData(myChart, labeling[n],data2[n]);
+    // addData(myChart, labeling[n],data3[n]);
 }
 
 allDateTime();
+
+myChart.data.datasets[0].data=data2;
+myChart.data.datasets[1].data=data3;
+console.log(myChart.data.datasets[1].data);
+console.log(myChart.data.datasets[0].data);
+        // document.getElementById('addData').addEventListener('click', function() {
+        //     if (barChartData.datasets.length > 0) {
+        //         var month = MONTHS[barChartData.labels.length % MONTHS.length];
+        //         barChartData.labels.push(month);
+
+        //         for (var index = 0; index < barChartData.datasets.length; ++index) {
+        //             // window.myBar.addData(randomScalingFactor(), index);
+        //             barChartData.datasets[index].data.push(randomScalingFactor());
+        //         }
+
+        //         window.myBar.update();
+        //     }
+        // });
