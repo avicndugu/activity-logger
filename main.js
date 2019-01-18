@@ -179,14 +179,37 @@ function chartTime(end) {
 	// console.log(end);
 	// console.log(end.endTimes.length);
 	for (n=0; n<end.endTimes.length; n++){	
-		end.endTimes[n]=parseInt(end.endTimes[n]) + parseFloat((end.endTimes[n].slice(3,6))/60);
-		end.endDates[n]=end.endDates[n];
+		// end.endTimes[n]=parseInt(end.endTimes[n]) + parseFloat((end.endTimes[n].slice(3,6))/60);
+		// end.endDates[n]=end.endDates[n];
 		// console.log(end.endTimes);
 	}
 	// console.log(end.endTimes);
 	// console.log(end);
 	return end;
 }
+
+function allTime(){
+	// var Times=[];
+	for(m=0; m<log.length; m++){
+		// Times.push(parseInt(log[m])+ parseFloat((log[m].slice(3,6))/60));
+		// console.log(Times);
+	}
+	// return Times;
+}
+function allDateTime() {
+	var Dates=[];	
+	var Times=[];
+	for (n=0; n<log.length; n++){
+		Times.push(parseInt(log[n])+ parseFloat((log[n].slice(3,6))/60));
+		Dates.push(dLog[n]);
+	}
+	console.log(Times);
+	console.log(Dates);
+	return {Dates,Times};
+}
+// allTime();
+allDateTime();
+
 
 
 // 	var data=chartTime(dataSortOdd());
