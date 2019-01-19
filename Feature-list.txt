@@ -7,6 +7,9 @@ Graph to show the amount of time taken on each activity.
 
 Instead of showing the log when cicked let it get the last data entru from the log file.
 
+Implementing three lines in one graph has proved a bit difficult.
+I will create two more views: one showing start-times, end-times and total times.
+
 EXTRAS
 	
 Add the activity you want to keep time a log of.

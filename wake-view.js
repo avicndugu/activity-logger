@@ -63,8 +63,8 @@ var data2=(allDateTime().Times).filter((value,index,array) => {
 // console.log(allDateTime().Times);
 // var data=chartTime(dataSortOdd()).endTimes;
 // console.log(data);
-var labeling=allDateTime().Dates;
-// var labeling=chartTime(dataSortOdd()).endDates;
+// var labeling=allDateTime().Dates;
+var labeling=chartTime(dataSortOdd()).endDates;
 // console.log(labeling);
 // console.log(labeling.length);
 // console.log(data.length);
@@ -91,11 +91,6 @@ for (n=0; n<labeling.length; n++){
 }
 
 // ADDING NEW LINES TO THE GRAPH
-myChart.data.datasets.push({
-  label: 'label2',
-  backgroundColor: '#ff0000',
-  data: data2
-});
 myChart.data.datasets.push({
   label: 'label3',
   backgroundColor: '#ff0000',
