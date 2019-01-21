@@ -5,17 +5,17 @@ var myChart = new Chart(ctx, {
     data: {
         labels: labeling,
         datasets: [{
-            data: dataWakeUp,
+            data: dataSleep,
             borderColor: ['rgba(54, 162, 235, 1)'],
-            label: 'Time Entry',
+            label: 'Sleep Time Entry',
             borderWidth: 3,
             fill:false
         },
         ]
     },
-    options: {
-        scales: {
-            yAxes: [{
+        options: {
+            scales: {
+                yAxes: [{
                 ticks: {
                     beginAtZero:true
                 }
@@ -45,12 +45,12 @@ for (n=myChart.data.labels.length; n>=0; n--){
 // ADDING NEW DATA SO THAT WE CAN VIEW IT
 // var data=allDateTime().Times;
 var data=allDateTime().Times;
-var dataWakeUp=(allDateTime().Times).filter((value,index,array) => {
-    return index % 2 === 0;
-});
-// var data3=(allDateTime().Times).filter((value,index,array) => {
-//     return index % 2 !== 0;
+// var data2=(allDateTime().Times).filter((value,index,array) => {
+//     return index % 2 === 0;
 // });
+var dataSleep=(allDateTime().Times).filter((value,index,array) => {
+    return index % 2 !== 0;
+});
 // console.log(data2);
 // console.log(data3);
 // console.log(allDateTime().Times);
@@ -64,18 +64,18 @@ var labeling=chartTime(dataSortOdd()).endDates;
 // var data4=[];
 // var data5=[];
 for (n=0; n<labeling.length; n++){
-//     // console.log(data[n]);
-//     if(n%2===0){
-//          data4.push(data[n]);
-//     //      console.log(2);
-//     }
-//     else{
-//         data5.push(data[n]);
-//     //     console.log(1);
-//     }
-    // console.log(labeling[n]);
-    // console.log(data4);
-    addData(myChart, labeling[n],dataWakeUp[n]);
+    // // console.log(data[n]);
+    // if(n%2===0){
+    //      data4.push(data[n]);
+    // //      console.log(2);
+    // }
+    // else{
+    //     data5.push(data[n]);
+    // //     console.log(1);
+    // }
+    // // console.log(labeling[n]);
+    // // console.log(data4);
+    addData(myChart, labeling[n],dataSleep[n]);
     // addData(myChart, labeling[n],data2[n]);
     // addData(myChart, labeling[n],data3[n]);
     // addData1(myChart, labeling[n],data[n]);

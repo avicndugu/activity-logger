@@ -102,21 +102,15 @@ document.querySelector('#test').addEventListener('click',function(){
 	timeDisplay.innerText=timeLog((allTimeLog()));
 	timeDisplay.style.textAlign="center";
 	// timeDisplay.style.a\lign="center";
-
-	
 });
-document.querySelector('#adding').addEventListener('click', function(){
-    window.location.href = "chart-view.html";
-});
+// document.querySelector('#chart-view').addEventListener('click', function(){
+//     window.location.href = "chart-view.html";
+// });
 // document.querySelector("#graph").addEventListener("click",function(){
 // 	console.log(dataSortOdd(log,dLog));
 // 	console.log(log);
 // });
-document.querySelector('#back').addEventListener('click', function(){
-	// timeStore(time);
-	// dateStore(date);
-    window.location.href = "index.html";
-});
+
 // old code to be rewritten
 
 
