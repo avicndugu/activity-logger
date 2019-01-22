@@ -12,3 +12,6 @@ document.querySelector('#chart-view').addEventListener('click', function(){
 document.querySelector('#back').addEventListener('click', function(){
     window.location.href = "index.html";
 });
+document.querySelector('#sleep-time').addEventListener('click', function(){
+    window.location.href = "sleep-time.html";
+});
