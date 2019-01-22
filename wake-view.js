@@ -40,47 +40,16 @@ for (n=myChart.data.labels.length; n>=0; n--){
     });
     myChart.update();
 }
-// console.log(dataSortOdd());
-// console.log(chartTime(dataSortOdd()));
+
 // ADDING NEW DATA SO THAT WE CAN VIEW IT
-// var data=allDateTime().Times;
 var data=allDateTime().Times;
 var dataWakeUp=(allDateTime().Times).filter((value,index,array) => {
     return index % 2 === 0;
 });
-// var data3=(allDateTime().Times).filter((value,index,array) => {
-//     return index % 2 !== 0;
-// });
-// console.log(data2);
-// console.log(data3);
-// console.log(allDateTime().Times);
-// var data=chartTime(dataSortOdd()).endTimes;
-// console.log(data);
-// var labeling=allDateTime().Dates;
+
 var labeling=chartTime(dataSortOdd()).endDates;
-// console.log(labeling);
-// console.log(labeling.length);
-// console.log(data.length);
-// var data4=[];
-// var data5=[];
 for (n=0; n<labeling.length; n++){
-//     // console.log(data[n]);
-//     if(n%2===0){
-//          data4.push(data[n]);
-//     //      console.log(2);
-//     }
-//     else{
-//         data5.push(data[n]);
-//     //     console.log(1);
-//     }
-    // console.log(labeling[n]);
-    // console.log(data4);
     addData(myChart, labeling[n],dataWakeUp[n]);
-    // addData(myChart, labeling[n],data2[n]);
-    // addData(myChart, labeling[n],data3[n]);
-    // addData1(myChart, labeling[n],data[n]);
-    // addData(myChart,data4[n],0);
-    // addData(myChart,data5[n],1);
 }
 
 // // ADDING NEW LINES TO THE GRAPH
